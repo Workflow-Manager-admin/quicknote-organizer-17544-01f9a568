@@ -1,6 +1,7 @@
 import { Composition } from "remotion";
 import { HelloWorld, myCompSchema } from "./HelloWorld";
 import { Logo, myCompSchema2 } from "./HelloWorld/Logo";
+import { QuickNoteOrganizer } from "./QuickNoteOrganizer"; // Import the new component
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -40,6 +41,17 @@ export const RemotionRoot: React.FC = () => {
           logoColor1: "#91dAE2" as const,
           logoColor2: "#86A8E7" as const,
         }}
+      />
+
+      {/* Add QuickNoteOrganizer to the compositions */}
+      <Composition
+        id="QuickNoteOrganizer"
+        component={QuickNoteOrganizer}
+        durationInFrames={300} // Adjust as needed for interaction
+        fps={30}
+        width={1280} // Standard app width
+        height={720}  // Standard app height
+        // No schema or defaultProps needed for this interactive component yet
       />
     </>
   );
