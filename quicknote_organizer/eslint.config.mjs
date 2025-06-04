@@ -9,7 +9,8 @@ export default [
       parser: tsParser,
       globals: {
         React: 'readable',  // Add this line to define React as a global
-        console: 'readonly' // Allow 'console' global
+        console: 'readonly', // Allow 'console' global
+        HTMLInputElement: 'readonly' // Define HTMLInputElement as a global
       }
     },
     plugins: {
