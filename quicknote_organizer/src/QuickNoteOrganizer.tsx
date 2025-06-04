@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AbsoluteFill, Sequence, useVideoConfig } from 'remotion';
+import { AbsoluteFill, useVideoConfig } from 'remotion';
 
 // Define color palette
 const colors = {
@@ -200,10 +200,11 @@ export interface QuickNoteOrganizerProps {
  * Handles note creation, editing, deletion, searching, and categorization.
  */
 export const QuickNoteOrganizer: React.FC<QuickNoteOrganizerProps> = () => {
-  const { fps, durationInFrames, width, height } = useVideoConfig();
+  // const { fps, durationInFrames, width, height } = useVideoConfig(); // Removed unused vars
 
   const [notes, setNotes] = useState<Note[]>([]);
-  const [categories, setCategories] = useState<string[]>(['All', 'Work', 'Personal', 'Ideas']);
+  // setCategories removed as it's not used yet, categories is initialized directly
+  const [categories] = useState<string[]>(['All', 'Work', 'Personal', 'Ideas']);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -222,7 +223,7 @@ export const QuickNoteOrganizer: React.FC<QuickNoteOrganizerProps> = () => {
    */
   const handleSaveNote = () => {
     if (!newNoteTitle.trim()) {
-      alert('Title cannot be empty.');
+      console.warn('Title cannot be empty.'); // Replaced alert with console.warn
       return;
     }
     const now = new Date();
@@ -279,11 +280,12 @@ export const QuickNoteOrganizer: React.FC<QuickNoteOrganizerProps> = () => {
    * @param noteId The ID of the note to delete.
    */
   const handleDeleteNote = (noteId: string) => {
-    if (window.confirm('Are you sure you want to delete this note?')) {
-      setNotes(notes.filter((n) => n.id !== noteId));
-      if (selectedNote?.id === noteId) {
-        setSelectedNote(null);
-      }
+    // Removed window.confirm for now to avoid browser-specific API errors
+    // In a real app, a custom modal confirmation would be better here.
+    console.log(`Attempting to delete note: ${noteId}`);
+    setNotes(notes.filter((n) => n.id !== noteId));
+    if (selectedNote?.id === noteId) {
+      setSelectedNote(null);
     }
   };
 
