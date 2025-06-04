@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AbsoluteFill, useVideoConfig } from 'remotion';
+import { AbsoluteFill } from 'remotion';
 
 // Define color palette
 const colors = {
